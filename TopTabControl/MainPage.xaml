@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:templates="clr-namespace:TopTabControl.TopTabControl"
+             mc:Ignorable="d"
+             x:Class="TopTabControl.MainPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <CollectionView x:Name="TopButtonsView" Grid.Row="0" SelectionChanged="TopButtonsView_SelectionChanged" SelectionMode="Single" HorizontalScrollBarVisibility="Never">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal"
+                           SnapPointsType="MandatorySingle"
+                           SnapPointsAlignment="Start" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <!-- Change from stack to Grid, might be better, how to center on Android when single item-->
+                    <DataTemplate>
+                        <StackLayout WidthRequest="150" HeightRequest="40">
+                            <Label Text="{Binding TitleName}" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
+                            <BoxView x:Name="SelectedUnderLine" Color="Fuchsia" HeightRequest="5" VerticalOptions="EndAndExpand" Margin="10"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <BoxView Grid.Row="1" Color="Black" HeightRequest="1"/>
+
+            <CollectionView x:Name="BottomContentView" Margin="0,-5,0,0" Grid.Row="2">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal"
+                           SnapPointsType="MandatorySingle"
+                           SnapPointsAlignment="Start" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <templates:GroupedDataTemplate/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

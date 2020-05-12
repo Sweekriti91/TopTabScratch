@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:templates="clr-namespace:TopTabControl.TopTabControl"
+             x:Class="TopTabControl.TopTabControl.GroupedDataTemplate">
+    <ContentView.Content>
+        <StackLayout x:Name="StackList"
+                    BindableLayout.ItemsSource="{Binding PodcastList}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label
+                                    Text="{Binding GroupName}"
+                                    FontAttributes="Bold"
+                                    Margin="5,15,5,0" />
+                                <CollectionView
+                                    ItemsSource="{Binding .}"
+                                    ItemsLayout="HorizontalList"
+                                    HeightRequest="300"
+                                    SelectionMode="Single">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout
+                                                HeightRequest="125"
+                                                WidthRequest="100">
+                                                <Image
+                                                    Source="{Binding Image}"
+                                                    HeightRequest="100"
+                                                    WidthRequest="100"
+                                                    Margin="5,0" />
+                                                <Label
+                                                    Text="{Binding Title}"
+                                                    FontAttributes="Bold"
+                                                    FontSize="Small"
+                                                    LineBreakMode="WordWrap"
+                                                    MaxLines="2" />
+                                                <Label
+                                                    Text="{Binding Author}"
+                                                    FontSize="Micro"
+                                                    LineBreakMode="TailTruncation" />
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+    </ContentView.Content>
+</ContentView>
